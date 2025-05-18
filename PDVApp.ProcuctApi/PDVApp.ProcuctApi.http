@@ -1,0 +1,6 @@
+@PDVApp.ProcuctApi_HostAddress = http://localhost:5121
+
+GET {{PDVApp.ProcuctApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

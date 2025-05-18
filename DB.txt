@@ -1,0 +1,4 @@
+docker run -d --name finance-app-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=root -e POSTGRES_DB=financeappDB -v /e/#FullStackClub/projects/financeapp-api/.postgres:/var/lib/postgresql/data -p 5432:5432 postgres
+
+
+docker run -d --name pdvapp-api -e POSTGRES_PASSWORD=pdvapp-mike-adm -e POSTGRES_USER=root -e POSTGRES_DB=pdvappdb -v /e/PDVApp:/var/lib/postgresql/data -p 5432:5432 postgres

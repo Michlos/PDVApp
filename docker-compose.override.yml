@@ -1,0 +1,43 @@
+services:
+  
+  pdvappdb:
+    container_name: pdvappdb
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=pdvapp-mike-adm
+      - POSTGRES_DB=PdvappDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=michlos@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=pdvapp-mike-adm
+    restart: always
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+
+
+  pdvapp.api:
+    container_name: pdvapp.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - "DatabaseSettings:ConnectionString=Server=pdvappdb;Port=5432;Database=PdvappDb;User Id=admin;Password=pdvapp-mike-adm"
+    depends_on:
+      - pdvappdb
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
