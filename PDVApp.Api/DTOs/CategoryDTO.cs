@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PDVApp.Api.DTOs;
 
-public class CatetoryDTO
+public class CategoryDTO
 {
     public int Id { get; set; }
 
