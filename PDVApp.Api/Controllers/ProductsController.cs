@@ -26,7 +26,7 @@ public class ProductsController : ControllerBase
         return Ok(productsDto);
     }
 
-    [HttpGet("{id: int}", Name = "GetProduct")]
+    [HttpGet("{id:int}", Name = "GetProduct")]
     public async Task<ActionResult<ProductDTO>> Get(int id)
     {
         var productDto = await _productService.GetProductById(id);
