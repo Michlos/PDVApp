@@ -32,8 +32,6 @@ public class CategoryService : ICategoryService
     public async Task<CategoryDTO> GetCategoryById(int id)
     {
         var categoryEntity = await _categoryRepository.GetById(id);
-        if (categoryEntity == null)
-            throw new Exception("Service: Category not found");
         return _mapper.Map<CategoryDTO>(categoryEntity);
     }
     public async Task AddCategory(CategoryDTO categoryDto)
@@ -51,8 +49,6 @@ public class CategoryService : ICategoryService
     public async Task RemoveCategory(int id)
     {
         var categoryEntity = await _categoryRepository.GetById(id);
-        if (categoryEntity == null)
-            throw new Exception("Service: Category not found");
         await _categoryRepository.Delete(id);
     }
 

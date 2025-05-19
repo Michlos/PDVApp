@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 
 using PDVApp.Api.Context;
+using PDVApp.Api.Repository;
+using PDVApp.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //AutoMapper service
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+
+//Services Injection
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
 

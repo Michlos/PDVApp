@@ -43,8 +43,6 @@ public class ProductService : IProductService
     public async Task RemoveProduct(int id)
     {
         var productEntity = _productRepository.GetById(id);
-        if (productEntity == null)
-            throw new Exception("Service: Product not found");
         await _productRepository.Delete(id);
     }
 
