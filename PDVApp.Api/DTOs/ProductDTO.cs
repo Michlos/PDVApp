@@ -29,7 +29,15 @@ public class ProductDTO
     [Required(ErrorMessage = "The Quantity is Required")]
     [Range(0, 9999999999, ErrorMessage = "The Quantity must be greater than or equal to 0")]
     public int Quantity { get; set; }
+    public int MinQuantity { get; set; }
+
+    [MaxLength(100, ErrorMessage = "The Barcode must have at most 100 characters")]
+    public string? Barcode { get; set; }
     public string? ImageUrl { get; set; }
     public int CategoryId { get; set; }
     public Category? Category { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? ModifiedAt { get; set; }
+    public bool Enabled { get; set; }
+    public decimal Margin { get; set; }
 }

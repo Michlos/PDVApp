@@ -25,6 +25,7 @@ public class ProductService : IProductService
     public async Task<ProductDTO> GetProductById(int id)
     {
         var productEntity = await _productRepository.GetById(id);
+        if (productEntity == null) return null!;
         return _mapper.Map<ProductDTO>(productEntity);
     }
     
