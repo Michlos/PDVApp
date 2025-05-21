@@ -3,8 +3,6 @@
 using PDVApp.Api.Context;
 using PDVApp.Api.Models;
 
-using System.Globalization;
-
 namespace PDVApp.Api.Repository;
 
 public class ProductRepository : IProductRepository
@@ -28,7 +26,7 @@ public class ProductRepository : IProductRepository
 
     public async Task<Product> Create(Product product)
     {
-        _context.AddAsync(product);
+        await _context.AddAsync(product);
         await _context.SaveChangesAsync();
         return product;
     }

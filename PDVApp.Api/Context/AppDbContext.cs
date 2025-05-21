@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     }
     public DbSet<Product> Products { get; set; } = null!;
     public DbSet<Category> Categories { get; set; } = null!;
+    public DbSet<InventoryLog> InventoryLogs { get; set; } = null!;
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Product>().ToTable("Products");
@@ -32,6 +33,8 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<InventoryLog>().ToTable("InventoryLogs");
         modelBuilder.Entity<InventoryLog>().Property(e => e.OriginType).HasConversion<string>();
         modelBuilder.Entity<InventoryLog>().Property(e => e.Action).HasConversion<string>();
+
+        
 
 
         base.OnModelCreating(modelBuilder);

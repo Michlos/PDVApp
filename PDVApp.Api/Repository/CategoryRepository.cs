@@ -30,7 +30,7 @@ public class CategoryRepository : ICategoryRepository
 
     public async Task<Category> Create(Category category)
     {
-        _context.AddAsync(category);
+        await _context.AddAsync(category);
         await _context.SaveChangesAsync();
         return category;
     }
