@@ -10,12 +10,14 @@ public class CashRegister
     public DateTime? ClosedAt { get; set; } // Nullable to indicate if the register is still open
     public int UserId { get; set; } // ID of the user who opened the register
     public User? User { get; set; } // Navigation property to the User entity
+    public ICollection<Sale>? Sales { get; set; } // Navigation property to the Sale entity
+    public decimal TotalCashIn { get; set; }
+    public decimal TotalCashOut { get; set; }
+    public decimal TotalSales { get; set; }
+    public bool IsOpen { get; set; } = true; // Indicates if the cash register is currently open or closed
 
-    //public decimal TotalSales { get; set; }
-    //public decimal TotalCashIn { get; set; }
-    //public decimal TotalCashOut { get; set; }
-    //public ICollection<Sale>? Sales { get; set; } // Navigation property to the Sale entity
+
+    //public ICollection<CashMovement>? CashMovements { get; set; } // Navigation property to the CashMovement entity
     //public ICollection<InventoryLog>? InventoryLogs { get; set; } // Navigation property to the InventoryLog entity
-    //public bool IsOpen { get; set; } = true; // Indicates if the cash register is currently open or closed
     //public decimal CashAmount { get; set; } // Amount of cash in the register
 }
