@@ -6,4 +6,7 @@ public class PaymentMethod
     public string Name { get; set; } = string.Empty; // e.g., Cash, Credit Card, Debit Card, etc.
     //public string Description { get; set; }
 
+    public ICollection<Sale>? Sales { get; set; }
+
+
 }

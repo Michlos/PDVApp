@@ -58,6 +58,29 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Sale>().Property(s => s.SaleDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
         modelBuilder.Entity<Sale>().HasOne(s => s.CashRegister).WithMany(cr => cr.Sales).HasForeignKey(s => s.CashRegisterId).OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<Sale>().HasMany(s => s.SaleItems).WithOne(si => si.Sale).HasForeignKey(si => si.SaleId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Sale>().HasOne(s => s.User).WithMany(u => u.Sales).HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Sale>().Property(s => s.PaymentMethod).HasConversion<string>();
+        modelBuilder.Entity<Sale>().HasOne(s => s.PaymentMethod).WithMany(pm => pm.Sales).HasForeignKey(s => s.PaymentMethodId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<Sale>().Property(s => s.IsCanceled).HasDefaultValue(false);
+        modelBuilder.Entity<Sale>().Property(s => s.SaleDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+        modelBuilder.Entity<SaleItem>().ToTable("SaleItems");
+        modelBuilder.Entity<SaleItem>().HasKey(si => si.Id);
+        modelBuilder.Entity<SaleItem>().Property(si => si.Quantity).IsRequired().HasDefaultValue(1);
+        modelBuilder.Entity<SaleItem>().Property(si => si.Price).HasPrecision(10, 2);
+        modelBuilder.Entity<SaleItem>().HasOne(si => si.Product).WithMany(p => p.SaleItems).HasForeignKey(si => si.ProductId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<SaleItem>().HasOne(si => si.Sale).WithMany(s => s.SaleItems).HasForeignKey(si => si.SaleId).OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<SaleItem>().Property(si => si.TotalPrice).HasPrecision(10, 2);
+        modelBuilder.Entity<SaleItem>().HasOne(si => si.Product).WithMany(p => p.SaleItems).HasForeignKey(si => si.ProductId).OnDelete(DeleteBehavior.Restrict);
+
+
+
+
+
+
+
+
+
 
 
 

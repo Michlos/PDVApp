@@ -24,4 +24,6 @@ public class Product
             return ((SellingPrice - BuyngPrice) / BuyngPrice) * 100;
         }
     }
+
+    public ICollection<SaleItem>? SaleItems { get; internal set; }
 }
